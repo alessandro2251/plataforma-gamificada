@@ -75,7 +75,7 @@ export function StudentLayout({ children }) {
       if (!currentUser?.id) return;
       try {
         const response = await fetch(
-          `http://localhost:3001/users/${currentUser.id}`,
+          `${import.meta.env.VITE_API_URL}/users/${currentUser.id}`,
           { cache: "no-store" }, // <-- Anti-cache nativo
         );
         if (!response.ok) throw new Error("Usuário não encontrado.");
@@ -130,11 +130,14 @@ export function StudentLayout({ children }) {
           });
 
           try {
-            await fetch(`http://localhost:3001/users/${currentUser.id}`, {
-              method: "PATCH",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ avatar: compressedBase64 }),
-            });
+            await fetch(
+              `${import.meta.env.VITE_API_URL}/users/${currentUser.id}`,
+              {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ avatar: compressedBase64 }),
+              },
+            );
           } catch (error) {
             console.error("Erro ao salvar o avatar no banco:", error);
           }

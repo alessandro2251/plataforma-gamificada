@@ -65,15 +65,19 @@ export function AdminDashboard() {
           subjectsRes,
           challengesRes,
         ] = await Promise.all([
-          fetch(`http://localhost:3001/users`, { cache: "no-store" }),
-          fetch(`http://localhost:3001/completed_challenges`, {
+          fetch(`${import.meta.env.VITE_API_URL}/users`, { cache: "no-store" }),
+          fetch(`${import.meta.env.VITE_API_URL}/completed_challenges`, {
             cache: "no-store",
           }),
-          fetch(`http://localhost:3001/completed_weekly_challenges`, {
+          fetch(`${import.meta.env.VITE_API_URL}/completed_weekly_challenges`, {
             cache: "no-store",
           }),
-          fetch(`http://localhost:3001/subjects`, { cache: "no-store" }),
-          fetch(`http://localhost:3001/challenges`, { cache: "no-store" }),
+          fetch(`${import.meta.env.VITE_API_URL}/subjects`, {
+            cache: "no-store",
+          }),
+          fetch(`${import.meta.env.VITE_API_URL}/challenges`, {
+            cache: "no-store",
+          }),
         ]);
 
         if (!usersRes.ok)

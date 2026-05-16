@@ -35,7 +35,10 @@ export function AdminManageChallenges() {
     const fetchChallenges = async () => {
       try {
         setIsFetching(true);
-        const response = await fetch("http://localhost:3001/challenges");
+
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/challenges`,
+        );
         if (!response.ok) throw new Error("Erro de conexão com a API.");
 
         const data = await response.json();
@@ -148,7 +151,7 @@ export function AdminManageChallenges() {
       )
     ) {
       try {
-        await fetch(`http://localhost:3001/challenges/${id}`, {
+        await fetch(`${import.meta.env.VITE_API_URL}/challenges/${id}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ isArchived: true }),
@@ -176,7 +179,7 @@ export function AdminManageChallenges() {
       };
 
       const response = await fetch(
-        `http://localhost:3001/challenges/${editingChallenge.id}`,
+        `${import.meta.env.VITE_API_URL}/challenges/${editingChallenge.id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

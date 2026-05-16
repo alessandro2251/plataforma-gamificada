@@ -36,7 +36,7 @@ export function Rewards() {
       if (!currentUser?.id) return;
       try {
         const response = await fetch(
-          `http://localhost:3001/users/${currentUser.id}`,
+          `${import.meta.env.VITE_API_URL}/users/${currentUser.id}`,
         );
         const data = await response.json();
         setUserData(data);
@@ -75,7 +75,7 @@ export function Rewards() {
 
     try {
       const response = await fetch(
-        `http://localhost:3001/users/${userData.id}`,
+        `${import.meta.env.VITE_API_URL}/users/${userData.id}`,
         {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },

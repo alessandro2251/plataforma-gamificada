@@ -29,7 +29,7 @@ export function Login() {
     try {
       // 1. Faz o fetch de todos os utilizadores para validação de cargo prévia ou via context
       // Aqui usamos a lógica do seu Context que já retorna o user se bater email/senha
-      const response = await fetch("http://localhost:3001/users");
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/users`);
       const users = await response.json();
 
       const foundUser = users.find(

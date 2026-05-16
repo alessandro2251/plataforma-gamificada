@@ -3,7 +3,7 @@ import { createContext, useState, useEffect, useMemo } from "react";
 
 export const StudyContext = createContext({});
 
-const API_URL = "http://localhost:3001";
+const API_URL = `${import.meta.env.VITE_API_URL}`;
 
 export function StudyProvider({ children }) {
   const [challenges, setChallenges] = useState([]);

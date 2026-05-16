@@ -87,7 +87,7 @@ export function Dashboard() {
       if (!currentUser?.id) return;
       try {
         const response = await fetch(
-          `http://localhost:3001/users/${currentUser.id}`,
+          `${import.meta.env.VITE_API_URL}/users/${currentUser.id}`,
         );
         if (!response.ok) throw new Error("Falha ao buscar dados do usuário");
         const userData = await response.json();
@@ -113,7 +113,7 @@ export function Dashboard() {
       const todayStr = new Date().toISOString().split("T")[0];
 
       const historyRes = await fetch(
-        `http://localhost:3001/completed_challenges?userId=${currentUser.id}`,
+        `${import.meta.env.VITE_API_URL}/completed_challenges?userId=${currentUser.id}`,
       );
       if (!historyRes.ok) throw new Error("Erro ao buscar histórico.");
       const historyData = await historyRes.json();
@@ -129,7 +129,7 @@ export function Dashboard() {
 
       // Verificação de Prova Semanal
       const weeklyCompRes = await fetch(
-        `http://localhost:3001/completed_weekly_challenges?userId=${currentUser.id}`,
+        `${import.meta.env.VITE_API_URL}/completed_weekly_challenges?userId=${currentUser.id}`,
       );
       if (weeklyCompRes.ok) {
         const weeklyCompData = await weeklyCompRes.json();
@@ -154,7 +154,7 @@ export function Dashboard() {
 
         if (diffDays > 1 && currentUser.currentStreak > 0) {
           setVisualStreak(0);
-          fetch(`http://localhost:3001/users/${currentUser.id}`, {
+          fetch(`${import.meta.env.VITE_API_URL}/users/${currentUser.id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ currentStreak: 0 }),
@@ -168,7 +168,9 @@ export function Dashboard() {
       setIsChallengeDoneToday(doneToday);
 
       if (!doneToday) {
-        const challengesRes = await fetch(`http://localhost:3001/challenges`);
+        const challengesRes = await fetch(
+          `${import.meta.env.VITE_API_URL}/challenges`,
+        );
         const allChallenges = await challengesRes.json();
         const completedIds = historyData.map((record) => record.challengeId);
 
@@ -218,7 +220,7 @@ export function Dashboard() {
     setIsCompleting(true);
 
     try {
-      await fetch("http://localhost:3001/completed_challenges", {
+      await fetch(`${import.meta.env.VITE_API_URL}/completed_challenges`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

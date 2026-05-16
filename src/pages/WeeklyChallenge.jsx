@@ -56,13 +56,13 @@ export function WeeklyChallenge() {
       try {
         // 1. Buscar histórico do usuário
         const historyRes = await fetch(
-          `http://localhost:3001/completed_challenges?userId=${currentUser.id}`,
+          `${import.meta.env.VITE_API_URL}/completed_challenges?userId=${currentUser.id}`,
         );
         const historyData = await historyRes.json();
 
         // 2. Buscar se já fez a prova desta semana
         const weeklyCompRes = await fetch(
-          `http://localhost:3001/completed_weekly_challenges?userId=${currentUser.id}`,
+          `${import.meta.env.VITE_API_URL}/completed_weekly_challenges?userId=${currentUser.id}`,
         );
         let claimData = null;
         let isReviewMode = false;
@@ -97,7 +97,9 @@ export function WeeklyChallenge() {
         }
 
         // 3. Busca os objetos completos de todos os desafios da semana
-        const challengesRes = await fetch(`http://localhost:3001/challenges`);
+        const challengesRes = await fetch(
+          `${import.meta.env.VITE_API_URL}/challenges`,
+        );
         const allChallenges = await challengesRes.json();
 
         const weeklyQuestions = allChallenges.filter((c) =>
@@ -131,17 +133,20 @@ export function WeeklyChallenge() {
     });
 
     try {
-      await fetch("http://localhost:3001/completed_weekly_challenges", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          id: `wcomp-${Date.now()}`,
-          userId: currentUser.id,
-          completionDate: new Date().toISOString(),
-          score: currentScore,
-          answers: answers,
-        }),
-      });
+      await fetch(
+        `${import.meta.env.VITE_API_URL}/completed_weekly_challenges`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            id: `wcomp-${Date.now()}`,
+            userId: currentUser.id,
+            completionDate: new Date().toISOString(),
+            score: currentScore,
+            answers: answers,
+          }),
+        },
+      );
 
       setScore(currentScore);
       setIsSubmitted(true);
