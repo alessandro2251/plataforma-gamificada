@@ -2,7 +2,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { CheckCircle2, AlertCircle, Zap } from "lucide-react";
-import { cn } from "../../utils/cn"; // Função de merge explicada no próximo tópico
+import { cn } from "../../utils/cn";
 
 export function DailyChallengeForm({ question, options, onSubmitChallenge }) {
   // Configuração do React Hook Form

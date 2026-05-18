@@ -37,7 +37,7 @@ const getDaysDiff = (dateStr1, dateStr2) => {
 };
 
 // ==========================================
-// LÓGICA DE GAMIFICAÇÃO DO AVATAR (CORES OTIMIZADAS)
+// LÓGICA DE GAMIFICAÇÃO DO AVATAR
 // ==========================================
 const getStreakBorderClass = (streak) => {
   if (!streak || streak === 0) return "border-transparent border-2";
@@ -48,13 +48,13 @@ const getStreakBorderClass = (streak) => {
   if (streak === 2)
     return "border-2 border-neon-blue shadow-[0_0_15px_rgba(0,240,255,0.6)]";
 
-  // Estágios 3 e 4: Violeta / Roxo Escuro (Bem distinto do rosa)
+  // Estágios 3 e 4: Violeta / Roxo Escuro
   if (streak === 3)
     return "border-2 border-[#8b5cf6] shadow-[0_0_16px_rgba(139,92,246,0.6)]";
   if (streak === 4)
     return "border-2 border-[#a855f7] shadow-[0_0_22px_rgba(168,85,247,0.8)]";
 
-  // Estágios 5 e 6: Rosa Choque / Rose (Puxado para o vermelho)
+  // Estágios 5 e 6: Rosa Choque / Rose
   if (streak === 5)
     return "border-2 border-[#ec4899] shadow-[0_0_25px_rgba(236,72,153,0.8)]";
   if (streak === 6)
@@ -76,7 +76,7 @@ export function StudentLayout({ children }) {
       try {
         const response = await fetch(
           `${import.meta.env.VITE_API_URL}/users/${currentUser.id}`,
-          { cache: "no-store" }, // <-- Anti-cache nativo
+          { cache: "no-store" },
         );
         if (!response.ok) throw new Error("Usuário não encontrado.");
 
@@ -149,7 +149,7 @@ export function StudentLayout({ children }) {
   };
 
   // ==========================================
-  // AVALIAÇÃO DA BORDA (SEGURO CONTRA TIMEZONE)
+  // AVALIAÇÃO DA BORDA
   // ==========================================
   let effectiveStreakForBorder = userData?.currentStreak || 0;
   const lastClaimStr = userData?.lastRewardClaimDate;
@@ -183,7 +183,6 @@ export function StudentLayout({ children }) {
   ];
 
   return (
-    // md:flex = No mobile os elementos ficam soltos, no desktop vira flex (Sidebar ao lado)
     <div className="md:flex min-h-screen font-sans bg-vapor-dark text-gray-100 overflow-hidden">
       {/* ========================================== */}
       {/* 1. SIDEBAR (Apenas Desktop - md:flex) */}
@@ -292,7 +291,7 @@ export function StudentLayout({ children }) {
                     <Upload className="w-4 h-4 text-neon-blue" />
                     Alterar Avatar
                   </button>
-                  {/* Botão Sair no Dropdown (Super útil pro Mobile) */}
+                  {/* Botão Sair no Dropdown */}
                   <button
                     className="md:hidden w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-neon-pink hover:bg-neon-pink/10 rounded-lg transition-colors"
                     onClick={() => {
@@ -309,7 +308,6 @@ export function StudentLayout({ children }) {
         </header>
 
         {/* 3. CONTEÚDO SCROLLÁVEL (As páginas Dashboard, Subjects, etc) */}
-        {/* pb-24 é necessário no mobile para que o Menu Inferior não esconda o conteúdo do fim da tela */}
         <div className="flex-1 overflow-y-auto p-4 md:p-8 relative z-0 pb-24 md:pb-8">
           <div className="max-w-5xl mx-auto">{children}</div>
         </div>

@@ -233,7 +233,7 @@ export function WeeklyChallenge() {
                       // Trava Visual
                       isSubmitted && "pointer-events-none opacity-90",
                     )}>
-                    {/* BARRAGEM DE SEGURANÇA: O input de fato FICA desabilitado */}
+                    {/* BARRAGEM DE SEGURANÇA*/}
                     <input
                       type="radio"
                       name={`question-${q.id}`}

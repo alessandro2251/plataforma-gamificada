@@ -30,12 +30,12 @@ export function SubjectPlayer() {
 
   const subject = studentSubjects.find((s) => String(s.id) === String(id));
 
-  // Proteção de carregamento (Impede o redirect fantasma)
+  // Proteção de carregamento (Impede o redirect fantasma e barra acessos diretos via URL)
   useEffect(() => {
     if (studentSubjects.length === 0) return;
 
     if (!subject || subject.status === "locked") {
-      navigate("/disciplinas");
+      navigate("/disciplinas", { replace: true });
     } else {
       setIsReady(true);
     }
@@ -80,7 +80,6 @@ export function SubjectPlayer() {
     }
   };
 
-  // Modificado para ser assíncrono e aguardar o banco de dados
   const handleCompleteSubject = async () => {
     setIsCompleting(true);
     try {

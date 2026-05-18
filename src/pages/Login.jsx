@@ -28,7 +28,6 @@ export function Login() {
 
     try {
       // 1. Faz o fetch de todos os utilizadores para validação de cargo prévia ou via context
-      // Aqui usamos a lógica do seu Context que já retorna o user se bater email/senha
       const response = await fetch(`${import.meta.env.VITE_API_URL}/users`);
       const users = await response.json();
 
@@ -42,7 +41,7 @@ export function Login() {
         return;
       }
 
-      // 2. Validação Crucial de Cargo (Role-Lock)
+      // 2. Validação de Cargo (Role-Lock)
       if (activeModal === "admin" && foundUser.role !== "admin") {
         setError(
           "Sua conta é uma conta de aluno, faça login utilizando o menu correto.",
@@ -109,7 +108,7 @@ export function Login() {
               "relative w-full max-w-md p-8 rounded-2xl border border-white/10 shadow-2xl animate-in zoom-in-95 duration-300",
               activeModal === "admin" ? "bg-vapor-surface" : "bg-vapor-surface",
             )}>
-            {/* Linha de topo colorida conforme o cargo */}
+      
             <div
               className={cn(
                 "absolute top-0 left-0 right-0 h-2 rounded-t-2xl",

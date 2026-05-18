@@ -19,11 +19,12 @@ import { WeeklyChallenge } from "./pages/WeeklyChallenge";
 function AppRouter() {
   const { currentUser } = useStudy();
 
-  // Se não estiver logado, exibe a Página de Login Oficial
+  // Se não estiver logado, exibe a Página de Login
   if (!currentUser) {
     return (
       <Routes>
-        <Route path="*" element={<Login />} />
+        <Route path="/" element={<Login />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     );
   }

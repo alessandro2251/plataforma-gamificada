@@ -182,3 +182,27 @@ The test database (`db.json`) comes pre-configured with some users to facilitate
 ---
 
 Developed for the Software Engineering Capstone Project by Alessandro Albino Guimarães Silva, RU: 4109432
+
+Login:
+<img width="1600" height="938" alt="image" src="https://github.com/user-attachments/assets/0684e9c2-8252-4c28-ada2-d7bc6fc86963" />
+
+<img width="1600" height="931" alt="image" src="https://github.com/user-attachments/assets/c8c583a1-f700-40a7-a360-d27492aa3209" />
+
+Admin:
+<img width="1600" height="884" alt="image" src="https://github.com/user-attachments/assets/573f400d-849b-4a9e-a8bb-12dd5b6070ea" />
+
+<img width="1279" height="989" alt="image" src="https://github.com/user-attachments/assets/d6bfba58-3bdf-4816-ab8b-da211e0ce07c" />
+
+<img width="1274" height="984" alt="image" src="https://github.com/user-attachments/assets/65053c4c-2ed5-49d9-a198-8138161296b9" />
+
+<img width="1281" height="989" alt="image" src="https://github.com/user-attachments/assets/5e772b46-92ec-4d50-98f2-4693771ed90c" />
+
+<img width="1284" height="980" alt="image" src="https://github.com/user-attachments/assets/d192fd7c-6c72-438f-b623-ff9bf7147c95" />
+
+User:
+
+<img width="1699" height="990" alt="image" src="https://github.com/user-attachments/assets/6950adb8-c7b9-48ee-872d-8ed0d0d6ebc8" />
+
+<img width="1699" height="993" alt="image" src="https://github.com/user-attachments/assets/c91ad111-b089-4e95-96e1-880f7b6bcad1" />
+
+<img width="1698" height="987" alt="image" src="https://github.com/user-attachments/assets/c37d2a6f-b681-48dd-9605-58a55c35c869" />

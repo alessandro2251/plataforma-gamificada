@@ -145,20 +145,25 @@ export function Dashboard() {
       }
 
       // QUEBRA DE OFENSIVA VISUAL
-      if (historyData.length > 0) {
-        const sortedHistory = [...historyData].sort(
-          (a, b) => new Date(b.completionDate) - new Date(a.completionDate),
-        );
-        const lastChallengeDate = sortedHistory[0].completionDate;
-        const diffDays = getDaysDifference(lastChallengeDate);
+      const userRes = await fetch(
+        `${import.meta.env.VITE_API_URL}/users/${currentUser.id}`,
+      );
+      if (userRes.ok) {
+        const freshUser = await userRes.json();
+        const lastClaimStr = freshUser.lastRewardClaimDate;
 
-        if (diffDays > 1 && currentUser.currentStreak > 0) {
-          setVisualStreak(0);
-          fetch(`${import.meta.env.VITE_API_URL}/users/${currentUser.id}`, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ currentStreak: 0 }),
-          }).catch((err) => console.error("Erro no reset silencioso:", err));
+        if (lastClaimStr) {
+          const diffDays = getDaysDifference(lastClaimStr);
+
+          // Só zera no banco se já passou mais de 1 dia desde o último resgate
+          if (diffDays > 1 && freshUser.currentStreak > 0) {
+            setVisualStreak(0);
+            fetch(`${import.meta.env.VITE_API_URL}/users/${currentUser.id}`, {
+              method: "PATCH",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ currentStreak: 0 }),
+            }).catch((err) => console.error("Erro no reset silencioso:", err));
+          }
         }
       }
 

@@ -7,7 +7,10 @@ const API_URL = `${import.meta.env.VITE_API_URL}`;
 
 export function StudyProvider({ children }) {
   const [challenges, setChallenges] = useState([]);
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(() => {
+    const savedUser = localStorage.getItem("@AcademyWave:user");
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
   const [subjects, setSubjects] = useState([]);
   const [students, setStudents] = useState([]);
 
@@ -39,6 +42,7 @@ export function StudyProvider({ children }) {
       );
       if (user) {
         setCurrentUser(user);
+        localStorage.setItem("@AcademyWave:user", JSON.stringify(user));
         return true;
       }
       return false;
@@ -46,25 +50,31 @@ export function StudyProvider({ children }) {
       return false;
     }
   };
-  const logout = () => setCurrentUser(null);
+  const logout = () => {
+    setCurrentUser(null);
+    localStorage.removeItem("@AcademyWave:user");
+  };
 
   const studentSubjects = useMemo(() => {
     if (!currentUser || currentUser.role !== "student") return subjects;
 
-    // O aluno não deve ver matérias arquivadas
     const activeSubjects = subjects.filter((s) => !s.isArchived);
 
     return activeSubjects.map((subject) => {
       const isCompleted = currentUser.completedSubjectIds.includes(subject.id);
+
       let isUnlocked = true;
-      if (subject.prerequisiteId !== null) {
+
+      if (subject.prerequisiteId) {
         isUnlocked = currentUser.completedSubjectIds.includes(
           subject.prerequisiteId,
         );
       }
+
       let status = "locked";
       if (isCompleted) status = "completed";
       else if (isUnlocked) status = "unlocked";
+
       return { ...subject, status };
     });
   }, [subjects, currentUser]);

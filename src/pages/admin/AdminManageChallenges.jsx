@@ -67,7 +67,7 @@ export function AdminManageChallenges() {
     useState(null);
 
   // ==========================================
-  // AGRUPAMENTO DOS DESAFIOS ATIVOS (MÁGICA)
+  // AGRUPAMENTO DOS DESAFIOS ATIVOS
   // ==========================================
   const groupedChallenges = useMemo(() => {
     const activeChallenges = challenges.filter((c) => !c.isArchived);
@@ -87,7 +87,7 @@ export function AdminManageChallenges() {
   };
 
   // ==========================================
-  // FUNÇÕES DE CRIAÇÃO (WIZARD)
+  // FUNÇÕES DE CRIAÇÃO
   // ==========================================
   const handleFinalizeCreation = async () => {
     setIsSaving(true);
@@ -95,7 +95,7 @@ export function AdminManageChallenges() {
       const payload = {
         ...formData,
         subjectId: formData.subjectId,
-        isArchived: false, // Inicialmente não arquivado
+        isArchived: false,
       };
 
       const savedChallenge = await createChallenge(payload);
@@ -692,7 +692,7 @@ export function AdminManageChallenges() {
         </div>
       )}
 
-      {/* Modal Visualizar Alunos (MANTIDO CASO PRECISE, EMBORA NÃO USADO DIRETAMENTE AQUI) */}
+      {/* Modal Visualizar Alunos */}
       {viewingStudentsChallengeId && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-200">
           <div className="bg-vapor-surface border border-vapor-border rounded-2xl shadow-2xl shadow-neon-blue/20 w-full max-w-md overflow-hidden flex flex-col max-h-[80vh]">

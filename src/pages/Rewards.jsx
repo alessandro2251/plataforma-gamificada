@@ -5,7 +5,7 @@ import { Flame, Gift, Check, PartyPopper } from "lucide-react";
 import { cn } from "../utils/cn";
 
 // ==========================================
-// FUNÇÕES UTILITÁRIAS DE TEMPO (À PROVA DE TIMEZONE)
+// FUNÇÕES UTILITÁRIAS DE TEMPO 
 // ==========================================
 const getLocalTodayString = () => {
   const d = new Date();

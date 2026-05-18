@@ -68,7 +68,6 @@ export function AdminLayout({ children }) {
       {/* 2. HEADER E CONTEÚDO PRINCIPAL (MAIN) */}
       {/* ========================================== */}
       <main className="flex-1 flex flex-col h-screen overflow-hidden relative">
-        {/* Header Responsivo (Aparece no Mobile, escondido no Desktop) */}
         <header className="md:hidden flex justify-between items-center p-4 bg-vapor-dark/90 backdrop-blur-sm border-b border-vapor-border/30 shrink-0 z-40 relative">
           <div className="text-xl font-black text-white tracking-tighter italic">
             ACADEMY<span className="text-neon-pink">WAVE</span>
@@ -83,7 +82,6 @@ export function AdminLayout({ children }) {
         </header>
 
         {/* Scrollable Content Area */}
-        {/* pb-24 é necessário no mobile para o Menu Inferior não esconder o rodapé do conteúdo */}
         <div className="flex-1 overflow-y-auto p-4 md:p-8 relative z-0 pb-24 md:pb-8">
           <div className="max-w-6xl mx-auto">{children}</div>
         </div>
@@ -101,7 +99,7 @@ export function AdminLayout({ children }) {
               cn(
                 "flex flex-col items-center gap-1 p-2 rounded-lg transition-colors flex-1",
                 isActive
-                  ? "text-neon-purple" // Cor do Admin
+                  ? "text-neon-purple"
                   : "text-gray-400 hover:text-gray-300",
               )
             }>
